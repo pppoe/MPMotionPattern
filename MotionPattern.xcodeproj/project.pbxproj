@@ -1,0 +1,269 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1AB3A18F15D9D65100E140A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB3A18E15D9D65100E140A3 /* UIKit.framework */; };
+		1AB3A19115D9D65100E140A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB3A19015D9D65100E140A3 /* Foundation.framework */; };
+		1AB3A19315D9D65100E140A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB3A19215D9D65100E140A3 /* CoreGraphics.framework */; };
+		1AB3A19915D9D65100E140A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1AB3A19715D9D65100E140A3 /* InfoPlist.strings */; };
+		1AB3A19B15D9D65100E140A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3A19A15D9D65100E140A3 /* main.m */; };
+		1AB3A19F15D9D65100E140A3 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3A19E15D9D65100E140A3 /* MPAppDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1AB3A18A15D9D65100E140A3 /* MotionPattern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotionPattern.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AB3A18E15D9D65100E140A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1AB3A19015D9D65100E140A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1AB3A19215D9D65100E140A3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1AB3A19615D9D65100E140A3 /* MotionPattern-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MotionPattern-Info.plist"; sourceTree = "<group>"; };
+		1AB3A19815D9D65100E140A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1AB3A19A15D9D65100E140A3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1AB3A19C15D9D65100E140A3 /* MotionPattern-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MotionPattern-Prefix.pch"; sourceTree = "<group>"; };
+		1AB3A19D15D9D65100E140A3 /* MPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAppDelegate.h; sourceTree = "<group>"; };
+		1AB3A19E15D9D65100E140A3 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1AB3A18715D9D65100E140A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AB3A18F15D9D65100E140A3 /* UIKit.framework in Frameworks */,
+				1AB3A19115D9D65100E140A3 /* Foundation.framework in Frameworks */,
+				1AB3A19315D9D65100E140A3 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1AB3A17F15D9D65100E140A3 = {
+			isa = PBXGroup;
+			children = (
+				1AB3A19415D9D65100E140A3 /* MotionPattern */,
+				1AB3A18D15D9D65100E140A3 /* Frameworks */,
+				1AB3A18B15D9D65100E140A3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1AB3A18B15D9D65100E140A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1AB3A18A15D9D65100E140A3 /* MotionPattern.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1AB3A18D15D9D65100E140A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1AB3A18E15D9D65100E140A3 /* UIKit.framework */,
+				1AB3A19015D9D65100E140A3 /* Foundation.framework */,
+				1AB3A19215D9D65100E140A3 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1AB3A19415D9D65100E140A3 /* MotionPattern */ = {
+			isa = PBXGroup;
+			children = (
+				1AB3A19D15D9D65100E140A3 /* MPAppDelegate.h */,
+				1AB3A19E15D9D65100E140A3 /* MPAppDelegate.m */,
+				1AB3A19515D9D65100E140A3 /* Supporting Files */,
+			);
+			path = MotionPattern;
+			sourceTree = "<group>";
+		};
+		1AB3A19515D9D65100E140A3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1AB3A19615D9D65100E140A3 /* MotionPattern-Info.plist */,
+				1AB3A19715D9D65100E140A3 /* InfoPlist.strings */,
+				1AB3A19A15D9D65100E140A3 /* main.m */,
+				1AB3A19C15D9D65100E140A3 /* MotionPattern-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1AB3A18915D9D65100E140A3 /* MotionPattern */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1AB3A1A215D9D65100E140A3 /* Build configuration list for PBXNativeTarget "MotionPattern" */;
+			buildPhases = (
+				1AB3A18615D9D65100E140A3 /* Sources */,
+				1AB3A18715D9D65100E140A3 /* Frameworks */,
+				1AB3A18815D9D65100E140A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MotionPattern;
+			productName = MotionPattern;
+			productReference = 1AB3A18A15D9D65100E140A3 /* MotionPattern.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1AB3A18115D9D65100E140A3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MP;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Haoxiang Li";
+			};
+			buildConfigurationList = 1AB3A18415D9D65100E140A3 /* Build configuration list for PBXProject "MotionPattern" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1AB3A17F15D9D65100E140A3;
+			productRefGroup = 1AB3A18B15D9D65100E140A3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1AB3A18915D9D65100E140A3 /* MotionPattern */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1AB3A18815D9D65100E140A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AB3A19915D9D65100E140A3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1AB3A18615D9D65100E140A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AB3A19B15D9D65100E140A3 /* main.m in Sources */,
+				1AB3A19F15D9D65100E140A3 /* MPAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1AB3A19715D9D65100E140A3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1AB3A19815D9D65100E140A3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1AB3A1A015D9D65100E140A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1AB3A1A115D9D65100E140A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1AB3A1A315D9D65100E140A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MotionPattern/MotionPattern-Prefix.pch";
+				INFOPLIST_FILE = "MotionPattern/MotionPattern-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1AB3A1A415D9D65100E140A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MotionPattern/MotionPattern-Prefix.pch";
+				INFOPLIST_FILE = "MotionPattern/MotionPattern-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1AB3A18415D9D65100E140A3 /* Build configuration list for PBXProject "MotionPattern" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AB3A1A015D9D65100E140A3 /* Debug */,
+				1AB3A1A115D9D65100E140A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1AB3A1A215D9D65100E140A3 /* Build configuration list for PBXNativeTarget "MotionPattern" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AB3A1A315D9D65100E140A3 /* Debug */,
+				1AB3A1A415D9D65100E140A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1AB3A18115D9D65100E140A3 /* Project object */;
+}
