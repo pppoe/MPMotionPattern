@@ -18,6 +18,8 @@
 - (void)setupAVCaptureSession;
 - (void)startAVSessionWithBufferDelegate:(id<AVCaptureVideoDataOutputSampleBufferDelegate>)delegate;
 - (void)stopAVSession;
++ (CGImageRef)createGrayScaleImageRefFromImageBuffer:(CVImageBufferRef)imageBuffer;
++ (CGImageRef)createRGBImageRefFromImageBuffer:(CVImageBufferRef)imageBuffer;
 
 - (void)testWithBufferDelegate:(id<AVCaptureVideoDataOutputSampleBufferDelegate>)delegate;
 

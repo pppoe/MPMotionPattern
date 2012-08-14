@@ -9,13 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @class MPVideoProcessor;
+@class MPMotionDetector;
 
 @interface MPMainViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UIButton *m_controlButton;
 @property (strong, nonatomic) IBOutlet UILabel *m_dispLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *m_imageView;
+
 @property (strong, nonatomic) MPVideoProcessor *m_videoProcessor;
+@property (strong, nonatomic) MPMotionDetector *m_motionDetector;
+
 
 - (IBAction)controlButtonTapped:(id)sender;
 

@@ -8,6 +8,7 @@
 
 #import "MPVideoProcessor.h"
 #import <AVFoundation/AVFoundation.h>
+#import <Accelerate/Accelerate.h>
 
 @implementation MPVideoProcessor
 @synthesize m_avSession;
@@ -44,6 +45,7 @@
 }
 
 - (void)startAVSessionWithBufferDelegate:(id<AVCaptureVideoDataOutputSampleBufferDelegate>) delegate {
+    [self setupAVCaptureSession];
     AVCaptureVideoDataOutput *dataOutput = [[self.m_avSession outputs] objectAtIndex:0];
     if ([dataOutput sampleBufferDelegate] == nil || [dataOutput sampleBufferDelegate] != delegate)
     {
@@ -76,6 +78,9 @@
         dataOutput.videoSettings = [NSDictionary
                                     dictionaryWithObject:[NSNumber numberWithUnsignedInt:
                                                           kCVPixelFormatType_420YpCbCr8BiPlanarFullRange]
+//        dataOutput.videoSettings = [NSDictionary
+//                                    dictionaryWithObject:[NSNumber numberWithInt:
+//                                                          kCVPixelFormatType_32BGRA]
                                     forKey:(NSString *)kCVPixelBufferPixelFormatTypeKey];
         if ([avSession canAddOutput:dataOutput])
         {
@@ -93,5 +98,32 @@
         [self.m_avSession startRunning];
     }
 }
+
++ (CGImageRef)createGrayScaleImageRefFromImageBuffer:(CVImageBufferRef)imageBuffer {
+    size_t width = CVPixelBufferGetWidthOfPlane(imageBuffer, 0);
+    size_t height = CVPixelBufferGetHeightOfPlane(imageBuffer, 0);
+    size_t bytesPerRow = CVPixelBufferGetBytesPerRowOfPlane(imageBuffer, 0);
+    Pixel_8 *lumaBuffer = (Pixel_8 *)CVPixelBufferGetBaseAddressOfPlane(imageBuffer, 0);
+    CGColorSpaceRef grayColorSpace = CGColorSpaceCreateDeviceGray();
+    CGContextRef context = CGBitmapContextCreate(lumaBuffer, width, height, 8, bytesPerRow, grayColorSpace, kCGImageAlphaNone);
+    CGImageRef imageRef = CGBitmapContextCreateImage(context);
+    CGContextRelease(context);
+    CGColorSpaceRelease(grayColorSpace);
+    return imageRef;
+}
+
++ (CGImageRef)createRGBImageRefFromImageBuffer:(CVImageBufferRef)imageBuffer {
+    size_t width = CVPixelBufferGetWidth(imageBuffer);
+    size_t height = CVPixelBufferGetHeight(imageBuffer);
+    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+    uint8_t *lumaBuffer = (uint8_t *)CVPixelBufferGetBaseAddress(imageBuffer);
+    CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(lumaBuffer, width, height, 8, bytesPerRow, rgbColorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedLast);
+    CGImageRef imageRef = CGBitmapContextCreateImage(context);
+    CGContextRelease(context);
+    CGColorSpaceRelease(rgbColorSpace);
+    return imageRef;
+}
+
 
 @end

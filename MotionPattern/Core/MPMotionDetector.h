@@ -8,6 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MPMotionDetector : NSObject
+@class MPMotionDetector;
+
+@protocol MPMotionDetectorDelegate <NSObject>
+
+- (void)motionPatternDetected:(MPMotionDetector *)detector;
+
+@end
+
+typedef enum {
+    EnumMD_MoveDirection
+} MotionDetectorPattern;
+
+@interface MPMotionDetector : NSObject {
+    cv::Mat m_prevFrameMat;
+    cv::Mat m_currFrameMat;
+}
+
+@property (assign, nonatomic) id<MPMotionDetectorDelegate> m_delegate;
+@property (assign, nonatomic) MotionDetectorPattern m_detectedPattern;
+
+- (NSString *)testDetection:(UIImage *)prevFrame :(UIImage*)curFrame;
+
++ (UIImage *)testSamplingGrayImage:(UIImage *)image;
 
 @end
