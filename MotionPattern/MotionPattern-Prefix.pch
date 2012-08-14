@@ -2,6 +2,10 @@
 // Prefix header for all source files of the 'MotionPattern' target in the 'MotionPattern' project
 //
 
+#ifdef __cplusplus
+#import <OpenCV/opencv2/opencv.hpp>
+#endif
+
 #import <Availability.h>
 
 #ifndef __IPHONE_3_0

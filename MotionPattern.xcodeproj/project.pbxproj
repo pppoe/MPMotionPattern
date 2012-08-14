@@ -13,6 +13,8 @@
 		1AB3A19915D9D65100E140A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1AB3A19715D9D65100E140A3 /* InfoPlist.strings */; };
 		1AB3A19B15D9D65100E140A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3A19A15D9D65100E140A3 /* main.m */; };
 		1AB3A19F15D9D65100E140A3 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3A19E15D9D65100E140A3 /* MPAppDelegate.m */; };
+		1AB3A1A615D9D66200E140A3 /* OpenCV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB3A1A515D9D66200E140A3 /* OpenCV.framework */; };
+		1AB3A1A915D9D67F00E140A3 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3A1A815D9D66900E140A3 /* UIImage+OpenCV.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,9 @@
 		1AB3A19C15D9D65100E140A3 /* MotionPattern-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MotionPattern-Prefix.pch"; sourceTree = "<group>"; };
 		1AB3A19D15D9D65100E140A3 /* MPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAppDelegate.h; sourceTree = "<group>"; };
 		1AB3A19E15D9D65100E140A3 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
+		1AB3A1A515D9D66200E140A3 /* OpenCV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCV.framework; path = ../../../../Downloads/OpenCVForiPhone/OpenCV.framework; sourceTree = "<group>"; };
+		1AB3A1A715D9D66900E140A3 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
+		1AB3A1A815D9D66900E140A3 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +41,7 @@
 				1AB3A18F15D9D65100E140A3 /* UIKit.framework in Frameworks */,
 				1AB3A19115D9D65100E140A3 /* Foundation.framework in Frameworks */,
 				1AB3A19315D9D65100E140A3 /* CoreGraphics.framework in Frameworks */,
+				1AB3A1A615D9D66200E140A3 /* OpenCV.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +68,7 @@
 		1AB3A18D15D9D65100E140A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1AB3A1A515D9D66200E140A3 /* OpenCV.framework */,
 				1AB3A18E15D9D65100E140A3 /* UIKit.framework */,
 				1AB3A19015D9D65100E140A3 /* Foundation.framework */,
 				1AB3A19215D9D65100E140A3 /* CoreGraphics.framework */,
@@ -72,6 +79,8 @@
 		1AB3A19415D9D65100E140A3 /* MotionPattern */ = {
 			isa = PBXGroup;
 			children = (
+				1AB3A1A715D9D66900E140A3 /* UIImage+OpenCV.h */,
+				1AB3A1A815D9D66900E140A3 /* UIImage+OpenCV.mm */,
 				1AB3A19D15D9D65100E140A3 /* MPAppDelegate.h */,
 				1AB3A19E15D9D65100E140A3 /* MPAppDelegate.m */,
 				1AB3A19515D9D65100E140A3 /* Supporting Files */,
@@ -155,6 +164,7 @@
 			files = (
 				1AB3A19B15D9D65100E140A3 /* main.m in Sources */,
 				1AB3A19F15D9D65100E140A3 /* MPAppDelegate.m in Sources */,
+				1AB3A1A915D9D67F00E140A3 /* UIImage+OpenCV.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +234,10 @@
 		1AB3A1A315D9D65100E140A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Downloads/OpenCVForiPhone\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MotionPattern/MotionPattern-Prefix.pch";
 				INFOPLIST_FILE = "MotionPattern/MotionPattern-Info.plist";
@@ -235,6 +249,10 @@
 		1AB3A1A415D9D65100E140A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Downloads/OpenCVForiPhone\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MotionPattern/MotionPattern-Prefix.pch";
 				INFOPLIST_FILE = "MotionPattern/MotionPattern-Info.plist";
