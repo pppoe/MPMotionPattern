@@ -49,10 +49,13 @@
 
 #import "MPMotionDetector.h"
 #import "UIImage+OpenCV.h"
+#import "MPMotionFilter.h"
+#import "MPMotionPattern.h"
 
 #define square(X) ((X)*(X))
 
-#define SEARCHING_RANGE_2 2
+#define kBufferFramesCount 3
+
 #define MOTION_BLOCK_WIDTH 20
 #define MOTION_BLOCK_HEIGHT 14
 
@@ -61,6 +64,11 @@
 
 #define kDefaultSamplingSpacing 4
 #define kDefaultSamplingBinSizeInShift 4
+
+#define kTextUniCodeUpArrow @"\u2191"
+#define kTextUniCodeDownArrow @"\u2193"
+#define kTextUniCodeLeftArrow @"\u2190"
+#define kTextUniCodeRightArrow @"\u2192"
 
 int t_SampledImagePrev[MOTION_BLOCK_HEIGHT][MOTION_BLOCK_WIDTH];
 int t_SampledImageCurr[MOTION_BLOCK_HEIGHT][MOTION_BLOCK_WIDTH];
@@ -176,8 +184,25 @@ void gridSamplingImageMat(cv::Mat& org_imageMat, cv::Mat& to_imageMat, const int
     
 }
 
+@interface MPMotionDetector () <MPMotionPatternDelegate>
+
+@end
+
 @implementation MPMotionDetector
 @synthesize m_delegate, m_detectedPattern;
+
+- (void)patternDetected:(MPMotionPatternType)motionPatternType {
+    
+}
+
+- (id)init {
+    if ((self = [super init]))
+    {
+        m_motionFilter = [[MPMotionFilter alloc] init];
+        m_pattern = [[MPMotionPatternNodShake alloc] init];
+    }
+    return self;
+}
 
 - (NSString *)testDetection:(UIImage *)org_prevFrame :(UIImage*)org_curFrame {
 
@@ -195,35 +220,51 @@ void gridSamplingImageMat(cv::Mat& org_imageMat, cv::Mat& to_imageMat, const int
     else
     {
         //< the Old-Curr Sampled Frame is now the prev-Sampled Frame
-        cv::Mat& r_preFrame = m_currFrameMat;
-        cv::Mat& r_curFrame = m_prevFrameMat;
+        static bool oddFrame = true;
+        cv::Mat& r_preFrame = (oddFrame ? m_currFrameMat : m_prevFrameMat);
+        cv::Mat& r_curFrame = (oddFrame ? m_prevFrameMat : m_currFrameMat);
         
-        int moveX, moveY;
+        oddFrame = !oddFrame;
+        
+        const int search_range = 5;
+        int moveX = 0;
+        int moveY = 0;
         gridSamplingImageMat(curFrameMat, r_curFrame, kDefaultSamplingSpacing, kDefaultSamplingBinSizeInShift);
-        MotionEst(r_curFrame, r_preFrame, 5, moveX, moveY);
+        MotionEst(r_curFrame, r_preFrame, search_range, moveX, moveY);
         
-        NSMutableString *outputStr = [NSMutableString stringWithString:@"Action:"];
+        [m_motionFilter addMovement:CGPointMake(moveX, moveY)];
         
-        if (moveX != 0)
+        CGPoint move = [m_motionFilter getAverageMovement:kBufferFramesCount];
+        
+        NSMutableString *outputStr = [NSMutableString stringWithString:@""];
+        
+        moveX = (int)move.x;
+        moveY = (int)move.y;
+        
+        const int activeMoveFrameCounts = 10;
+        enum { EnumMoveNone, EnumMoveUp, EnumMoveDown, EnumMoveLeft, EnumMoveRight} moveType = EnumMoveNone;
+        if (fabs(moveY) > fabs(moveX))
         {
-            [outputStr appendFormat:(moveX > 0 ? @"Right %d " : @"Left %d "), moveX];
+            if (fabs(moveY) > 0)
+            {
+                moveType = (moveY < 0 ? EnumMoveRight : EnumMoveLeft);
+            }
         }
-        
-        if (moveY != 0)
+        else
         {
-            [outputStr appendFormat:(moveY > 0 ? @"Up %d" : @"Down %d"), moveY];
+            if (fabs(moveX) > 0)
+            {
+                moveType = (moveX < 0 ? EnumMoveUp : EnumMoveDown);
+            }
         }
+
+        [m_pattern processNewMove:move withDelegate:self];
         
+//        [outputStr appendFormat:(moveY < 0 ? kTextUniCodeRightArrow : kTextUniCodeLeftArrow)];
+//        [outputStr appendFormat:(moveX < 0 ? kTextUniCodeUpArrow : kTextUniCodeDownArrow)];
+
         return outputStr;
     }
-}
-
-+ (UIImage *)testSamplingGrayImage:(UIImage *)image
-{
-    cv::Mat imgMat = [image CVGrayscaleMat];
-    cv::Mat toMat;
-    gridSamplingImageMat(imgMat, toMat, kDefaultSamplingSpacing, kDefaultSamplingBinSizeInShift);
-    return [UIImage imageWithCVMat:toMat];
 }
 
 @end

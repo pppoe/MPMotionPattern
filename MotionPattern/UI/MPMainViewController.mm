@@ -30,6 +30,7 @@
     if (self) {
         // Custom initialization
         self.m_videoProcessor = [[MPVideoProcessor alloc] init];        
+        self.m_videoProcessor.m_captureImageType = MPVideoProcessorCaptureColorImageGrayScale;
         self.m_motionDetector = [[MPMotionDetector alloc] init];
     }
     return self;
@@ -42,7 +43,7 @@
     [self.m_controlButton setTag:kControlButtonStatusWaitForStart];
     [self.m_controlButton setTitle:kControlButtonCaptionStart forState:UIControlStateNormal];
     
-    self.m_imageView.layer.affineTransform = CGAffineTransformMakeRotation(M_PI_2);
+    //self.m_imageView.layer.affineTransform = CGAffineTransformMakeRotation(M_PI_2);
 }
 
 - (void)viewDidUnload
@@ -61,8 +62,7 @@
     CVImageBufferRef imageBuffer =  CMSampleBufferGetImageBuffer(sampleBuffer);
     CVPixelBufferLockBaseAddress(imageBuffer, 0);
 
-    CGImageRef dstImage = [MPVideoProcessor createGrayScaleImageRefFromImageBuffer:imageBuffer];
-//    CGImageRef dstImage = [MPVideoProcessor createRGBImageRefFromImageBuffer:imageBuffer];
+    CGImageRef dstImage = [self.m_videoProcessor createImageRefFromImageBuffer:imageBuffer];
     
     CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
     
@@ -70,8 +70,6 @@
     UIImage *currFrameImage = [UIImage imageWithCGImage:dstImage];
     
     dispatch_sync(dispatch_get_main_queue(), ^{
-//        UIImage *newImage =  [MPMotionDetector testSamplingGrayImage:currFrameImage];
-//        [self.m_imageView setImage:newImage];
         self.m_imageView.layer.contents = (__bridge id)dstImage;
     });
     
