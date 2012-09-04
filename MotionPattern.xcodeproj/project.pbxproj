@@ -8,16 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1A00DDC915E6657600D78A85 /* MPMotionFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00DDC815E6657600D78A85 /* MPMotionFilter.m */; };
-		1A00DDD115E6774700D78A85 /* MPVideoProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00DDD015E6774700D78A85 /* MPVideoProcessor.m */; };
-		1A5D7DBC15E6896C006853FC /* MPMotionPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D7DBB15E6896C006853FC /* MPMotionPattern.m */; };
 		1AB3A18F15D9D65100E140A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB3A18E15D9D65100E140A3 /* UIKit.framework */; };
 		1AB3A19115D9D65100E140A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB3A19015D9D65100E140A3 /* Foundation.framework */; };
 		1AB3A19315D9D65100E140A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB3A19215D9D65100E140A3 /* CoreGraphics.framework */; };
 		1AB3A19915D9D65100E140A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1AB3A19715D9D65100E140A3 /* InfoPlist.strings */; };
 		1AB3A19B15D9D65100E140A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3A19A15D9D65100E140A3 /* main.m */; };
 		1AB3A19F15D9D65100E140A3 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3A19E15D9D65100E140A3 /* MPAppDelegate.m */; };
-		1AB3A1A615D9D66200E140A3 /* OpenCV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB3A1A515D9D66200E140A3 /* OpenCV.framework */; };
-		1AB3A1A915D9D67F00E140A3 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3A1A815D9D66900E140A3 /* UIImage+OpenCV.mm */; };
 		1AB3A1BD15DA9AB700E140A3 /* MPMainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3A1BB15DA9AB700E140A3 /* MPMainViewController.mm */; };
 		1AB3A1BE15DA9AB700E140A3 /* MPMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AB3A1BC15DA9AB700E140A3 /* MPMainViewController.xib */; };
 		1AB3A1C715DA9C2300E140A3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB3A1C315DA9C2300E140A3 /* AVFoundation.framework */; };
@@ -26,16 +22,13 @@
 		1AB3A1CA15DA9C2300E140A3 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB3A1C615DA9C2300E140A3 /* CoreVideo.framework */; };
 		1AB3A1D115DAA0EA00E140A3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB3A1D015DAA0E900E140A3 /* Accelerate.framework */; };
 		1AB3A1D415DAA45600E140A3 /* MPMotionDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3A1D315DAA45600E140A3 /* MPMotionDetector.mm */; };
-		1AD912BE15DAEFCB0014969B /* 1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1AD912BD15DAEFCB0014969B /* 1.jpeg */; };
+		476FFF5F15F3068200544B36 /* MPVideoProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 476FFF5E15F3068200544B36 /* MPVideoProcessor.m */; };
+		476FFF6215F30C2E00544B36 /* MPImageDataWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 476FFF6115F30C2E00544B36 /* MPImageDataWrapper.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1A00DDC715E6657600D78A85 /* MPMotionFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPMotionFilter.h; path = Core/MPMotionFilter.h; sourceTree = "<group>"; };
 		1A00DDC815E6657600D78A85 /* MPMotionFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPMotionFilter.m; path = Core/MPMotionFilter.m; sourceTree = "<group>"; };
-		1A00DDCF15E6774700D78A85 /* MPVideoProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVideoProcessor.h; path = ../../../MPVideoProcessor/MPVideoProcessor/MPVideoProcessor.h; sourceTree = "<group>"; };
-		1A00DDD015E6774700D78A85 /* MPVideoProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVideoProcessor.m; path = ../../../MPVideoProcessor/MPVideoProcessor/MPVideoProcessor.m; sourceTree = "<group>"; };
-		1A5D7DBA15E6896C006853FC /* MPMotionPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPMotionPattern.h; path = Core/MPMotionPattern.h; sourceTree = "<group>"; };
-		1A5D7DBB15E6896C006853FC /* MPMotionPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPMotionPattern.m; path = Core/MPMotionPattern.m; sourceTree = "<group>"; };
 		1AB3A18A15D9D65100E140A3 /* MotionPattern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotionPattern.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AB3A18E15D9D65100E140A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1AB3A19015D9D65100E140A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -46,9 +39,6 @@
 		1AB3A19C15D9D65100E140A3 /* MotionPattern-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MotionPattern-Prefix.pch"; sourceTree = "<group>"; };
 		1AB3A19D15D9D65100E140A3 /* MPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAppDelegate.h; sourceTree = "<group>"; };
 		1AB3A19E15D9D65100E140A3 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
-		1AB3A1A515D9D66200E140A3 /* OpenCV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCV.framework; path = ../../../../Downloads/OpenCVForiPhone/OpenCV.framework; sourceTree = "<group>"; };
-		1AB3A1A715D9D66900E140A3 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
-		1AB3A1A815D9D66900E140A3 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		1AB3A1BA15DA9AB700E140A3 /* MPMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPMainViewController.h; path = UI/MPMainViewController.h; sourceTree = "<group>"; };
 		1AB3A1BB15DA9AB700E140A3 /* MPMainViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MPMainViewController.mm; path = UI/MPMainViewController.mm; sourceTree = "<group>"; };
 		1AB3A1BC15DA9AB700E140A3 /* MPMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MPMainViewController.xib; path = UI/MPMainViewController.xib; sourceTree = "<group>"; };
@@ -59,7 +49,10 @@
 		1AB3A1D015DAA0E900E140A3 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		1AB3A1D215DAA45600E140A3 /* MPMotionDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPMotionDetector.h; path = Core/MPMotionDetector.h; sourceTree = "<group>"; };
 		1AB3A1D315DAA45600E140A3 /* MPMotionDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MPMotionDetector.mm; path = Core/MPMotionDetector.mm; sourceTree = "<group>"; };
-		1AD912BD15DAEFCB0014969B /* 1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpeg; sourceTree = "<group>"; };
+		476FFF5D15F3068200544B36 /* MPVideoProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVideoProcessor.h; path = MPVideoProcessor/MPVideoProcessor/MPVideoProcessor.h; sourceTree = SOURCE_ROOT; };
+		476FFF5E15F3068200544B36 /* MPVideoProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVideoProcessor.m; path = MPVideoProcessor/MPVideoProcessor/MPVideoProcessor.m; sourceTree = SOURCE_ROOT; };
+		476FFF6015F30C2E00544B36 /* MPImageDataWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPImageDataWrapper.h; sourceTree = "<group>"; };
+		476FFF6115F30C2E00544B36 /* MPImageDataWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MPImageDataWrapper.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +68,6 @@
 				1AB3A19315D9D65100E140A3 /* CoreGraphics.framework in Frameworks */,
 				1AB3A18F15D9D65100E140A3 /* UIKit.framework in Frameworks */,
 				1AB3A19115D9D65100E140A3 /* Foundation.framework in Frameworks */,
-				1AB3A1A615D9D66200E140A3 /* OpenCV.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,7 +99,6 @@
 				1AB3A1C415DA9C2300E140A3 /* CoreAudio.framework */,
 				1AB3A1C515DA9C2300E140A3 /* CoreMedia.framework */,
 				1AB3A1C615DA9C2300E140A3 /* CoreVideo.framework */,
-				1AB3A1A515D9D66200E140A3 /* OpenCV.framework */,
 				1AB3A18E15D9D65100E140A3 /* UIKit.framework */,
 				1AB3A19015D9D65100E140A3 /* Foundation.framework */,
 				1AB3A19215D9D65100E140A3 /* CoreGraphics.framework */,
@@ -120,8 +111,8 @@
 			children = (
 				1AB3A1CC15DA9C7400E140A3 /* Core */,
 				1AB3A1B915DA9A9900E140A3 /* UI */,
-				1AB3A1A715D9D66900E140A3 /* UIImage+OpenCV.h */,
-				1AB3A1A815D9D66900E140A3 /* UIImage+OpenCV.mm */,
+				476FFF6015F30C2E00544B36 /* MPImageDataWrapper.h */,
+				476FFF6115F30C2E00544B36 /* MPImageDataWrapper.mm */,
 				1AB3A19D15D9D65100E140A3 /* MPAppDelegate.h */,
 				1AB3A19E15D9D65100E140A3 /* MPAppDelegate.m */,
 				1AB3A19515D9D65100E140A3 /* Supporting Files */,
@@ -154,14 +145,12 @@
 		1AB3A1CC15DA9C7400E140A3 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				1A00DDCF15E6774700D78A85 /* MPVideoProcessor.h */,
-				1A00DDD015E6774700D78A85 /* MPVideoProcessor.m */,
+				476FFF5D15F3068200544B36 /* MPVideoProcessor.h */,
+				476FFF5E15F3068200544B36 /* MPVideoProcessor.m */,
 				1AB3A1D215DAA45600E140A3 /* MPMotionDetector.h */,
 				1AB3A1D315DAA45600E140A3 /* MPMotionDetector.mm */,
 				1A00DDC715E6657600D78A85 /* MPMotionFilter.h */,
 				1A00DDC815E6657600D78A85 /* MPMotionFilter.m */,
-				1A5D7DBA15E6896C006853FC /* MPMotionPattern.h */,
-				1A5D7DBB15E6896C006853FC /* MPMotionPattern.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -169,7 +158,6 @@
 		1AD912BC15DAEFCB0014969B /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				1AD912BD15DAEFCB0014969B /* 1.jpeg */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -228,7 +216,6 @@
 			files = (
 				1AB3A19915D9D65100E140A3 /* InfoPlist.strings in Resources */,
 				1AB3A1BE15DA9AB700E140A3 /* MPMainViewController.xib in Resources */,
-				1AD912BE15DAEFCB0014969B /* 1.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,12 +228,11 @@
 			files = (
 				1AB3A19B15D9D65100E140A3 /* main.m in Sources */,
 				1AB3A19F15D9D65100E140A3 /* MPAppDelegate.m in Sources */,
-				1AB3A1A915D9D67F00E140A3 /* UIImage+OpenCV.mm in Sources */,
 				1AB3A1BD15DA9AB700E140A3 /* MPMainViewController.mm in Sources */,
 				1AB3A1D415DAA45600E140A3 /* MPMotionDetector.mm in Sources */,
 				1A00DDC915E6657600D78A85 /* MPMotionFilter.m in Sources */,
-				1A00DDD115E6774700D78A85 /* MPVideoProcessor.m in Sources */,
-				1A5D7DBC15E6896C006853FC /* MPMotionPattern.m in Sources */,
+				476FFF5F15F3068200544B36 /* MPVideoProcessor.m in Sources */,
+				476FFF6215F30C2E00544B36 /* MPImageDataWrapper.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,10 +304,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Haoxiang Li (C836H2YAFP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Haoxiang Li (C836H2YAFP)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Downloads/OpenCVForiPhone\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MotionPattern/MotionPattern-Prefix.pch";
 				INFOPLIST_FILE = "MotionPattern/MotionPattern-Info.plist";
@@ -337,10 +320,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Haoxiang Li (C836H2YAFP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Haoxiang Li (C836H2YAFP)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Downloads/OpenCVForiPhone\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MotionPattern/MotionPattern-Prefix.pch";
 				INFOPLIST_FILE = "MotionPattern/MotionPattern-Info.plist";

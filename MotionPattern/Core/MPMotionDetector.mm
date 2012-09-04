@@ -48,9 +48,8 @@
 
 
 #import "MPMotionDetector.h"
-#import "UIImage+OpenCV.h"
+#import "MPImageDataWrapper.h"
 #import "MPMotionFilter.h"
-#import "MPMotionPattern.h"
 
 #define square(X) ((X)*(X))
 
@@ -70,25 +69,21 @@
 #define kTextUniCodeLeftArrow @"\u2190"
 #define kTextUniCodeRightArrow @"\u2192"
 
-int t_SampledImagePrev[MOTION_BLOCK_HEIGHT][MOTION_BLOCK_WIDTH];
-int t_SampledImageCurr[MOTION_BLOCK_HEIGHT][MOTION_BLOCK_WIDTH];
-
 //< Measures
-int MSE(cv::Mat& curImage, cv::Mat& prevImage, int nPosX, int nPosY)
+int MSE(ImageDataWrapper& curImage, ImageDataWrapper& prevImage, int nPosX, int nPosY)
 {
 	int nCount = 0;
 	int nDifference = 0;
     
-	for (int y1 = 0; y1 < curImage.rows; y1++)
+	for (int y1 = 0; y1 < curImage.height(); y1++)
 	{
-		for (int x1 = 0; x1 < curImage.cols; x1++)
+		for (int x1 = 0; x1 < curImage.width(); x1++)
 		{
 			int x2 = x1 + nPosX;
 			int y2 = y1 + nPosY;
-			if (x2 >= 0 && x2 < curImage.cols && y2 >= 0 && y2 < curImage.rows)
+			if (x2 >= 0 && x2 < curImage.width() && y2 >= 0 && y2 < curImage.height())
 			{
-                
-				nDifference += square((int)curImage.at<uchar>(y1,x1) - (int)prevImage.at<uchar>(y2,x2));
+				nDifference += square((int)curImage.at(y1,x1) - (int)prevImage.at(y2,x2));
 				nCount++;
 			}
 		}
@@ -99,7 +94,7 @@ int MSE(cv::Mat& curImage, cv::Mat& prevImage, int nPosX, int nPosY)
 	return nDifference;
 }
 
-void MotionEst(cv::Mat& curImage, cv::Mat& prevImage, int range, int& moveX, int& moveY)
+void MotionEst(ImageDataWrapper& curImage, ImageDataWrapper& prevImage, int range, int& moveX, int& moveY)
 {
 	int nMinError = 999999;
 	int nMV_X = 0;
@@ -140,15 +135,15 @@ void MotionEst(cv::Mat& curImage, cv::Mat& prevImage, int range, int& moveX, int
     moveY = nMV_Y;
 }
 
-void gridSamplingImageMat(cv::Mat& org_imageMat, cv::Mat& to_imageMat, const int spacing, const int binSizeInShift) {
+void gridSamplingImageMat(ImageDataWrapper& org_imageMat, ImageDataWrapper* to_imageMat, const int spacing, const int binSizeInShift) {
     
-    int nWidth = org_imageMat.cols;
-    int nHeight = org_imageMat.rows;
+    int nWidth = org_imageMat.width();
+    int nHeight = org_imageMat.height();
     
     const int nSampledWidth = (nWidth >> binSizeInShift);
     const int nSampledHeight = (nHeight >> binSizeInShift);
     
-    to_imageMat = cv::Mat(nSampledHeight, nSampledWidth, CV_8U);
+    to_imageMat = new ImageDataWrapper(nSampledWidth, nSampledHeight);
     
     int sampleBufferCounts[nSampledHeight][nSampledWidth];
     int sampleBuffer[nSampledHeight][nSampledWidth];
@@ -167,7 +162,7 @@ void gridSamplingImageMat(cv::Mat& org_imageMat, cv::Mat& to_imageMat, const int
 		for (int px = 1; px < nWidth; px += spacing)
 		{
             int the_x = (px>>binSizeInShift);
-            int gray = (int)org_imageMat.at<uchar>(y+spacing/2,px);
+            int gray = (int)org_imageMat.at(y+spacing/2,px);
             sampleBuffer[by][the_x] += gray;
             sampleBufferCounts[by][the_x] += 1;
 		}
@@ -178,28 +173,19 @@ void gridSamplingImageMat(cv::Mat& org_imageMat, cv::Mat& to_imageMat, const int
 	{
 		for (int j = 0; j < nSampledWidth; j++)
 		{
-			to_imageMat.at<uchar>(i,j) = sampleBuffer[i][j] / sampleBufferCounts[i][j];
+			to_imageMat->assignAt(i,j) = sampleBuffer[i][j] / sampleBufferCounts[i][j];
 		}
 	}
     
 }
 
-@interface MPMotionDetector () <MPMotionPatternDelegate>
-
-@end
-
 @implementation MPMotionDetector
 @synthesize m_delegate, m_detectedPattern;
-
-- (void)patternDetected:(MPMotionPatternType)motionPatternType {
-    
-}
 
 - (id)init {
     if ((self = [super init]))
     {
         m_motionFilter = [[MPMotionFilter alloc] init];
-        m_pattern = [[MPMotionPatternNodShake alloc] init];
     }
     return self;
 }
@@ -209,28 +195,28 @@ void gridSamplingImageMat(cv::Mat& org_imageMat, cv::Mat& to_imageMat, const int
     const int spacing = kDefaultSamplingSpacing;
     const int binSizeInShift = kDefaultSamplingBinSizeInShift;
     
-    cv::Mat curFrameMat = [org_curFrame CVGrayscaleMat];
+    ImageDataWrapper *curFrameMat = [MPImageDataWrapper imageDataWrapperFromUIImage:org_curFrame];
     
     if (!org_prevFrame || fabs([org_prevFrame size].width) < 1) //< Invalid PrevFrame
     {
         NSLog(@"First Frame");
-        gridSamplingImageMat(curFrameMat, m_currFrameMat, spacing, binSizeInShift);
+        gridSamplingImageMat(*curFrameMat, m_currFrameImageData, spacing, binSizeInShift);
         return @"First Frame";
     }
     else
     {
         //< the Old-Curr Sampled Frame is now the prev-Sampled Frame
         static bool oddFrame = true;
-        cv::Mat& r_preFrame = (oddFrame ? m_currFrameMat : m_prevFrameMat);
-        cv::Mat& r_curFrame = (oddFrame ? m_prevFrameMat : m_currFrameMat);
+        ImageDataWrapper* r_preFrame = (oddFrame ? m_currFrameImageData : m_prevFrameImageData);
+        ImageDataWrapper* r_curFrame = (oddFrame ? m_prevFrameImageData : m_currFrameImageData);
         
         oddFrame = !oddFrame;
         
         const int search_range = 5;
         int moveX = 0;
         int moveY = 0;
-        gridSamplingImageMat(curFrameMat, r_curFrame, kDefaultSamplingSpacing, kDefaultSamplingBinSizeInShift);
-        MotionEst(r_curFrame, r_preFrame, search_range, moveX, moveY);
+        gridSamplingImageMat(*curFrameMat, r_curFrame, kDefaultSamplingSpacing, kDefaultSamplingBinSizeInShift);
+        MotionEst(*r_curFrame, *r_preFrame, search_range, moveX, moveY);
         
         [m_motionFilter addMovement:CGPointMake(moveX, moveY)];
         
@@ -241,7 +227,7 @@ void gridSamplingImageMat(cv::Mat& org_imageMat, cv::Mat& to_imageMat, const int
         moveX = (int)move.x;
         moveY = (int)move.y;
         
-        const int activeMoveFrameCounts = 10;
+        //const int activeMoveFrameCounts = 10;
         enum { EnumMoveNone, EnumMoveUp, EnumMoveDown, EnumMoveLeft, EnumMoveRight} moveType = EnumMoveNone;
         if (fabs(moveY) > fabs(moveX))
         {
@@ -257,11 +243,9 @@ void gridSamplingImageMat(cv::Mat& org_imageMat, cv::Mat& to_imageMat, const int
                 moveType = (moveX < 0 ? EnumMoveUp : EnumMoveDown);
             }
         }
-
-        [m_pattern processNewMove:move withDelegate:self];
         
-//        [outputStr appendFormat:(moveY < 0 ? kTextUniCodeRightArrow : kTextUniCodeLeftArrow)];
-//        [outputStr appendFormat:(moveX < 0 ? kTextUniCodeUpArrow : kTextUniCodeDownArrow)];
+        [outputStr appendFormat:(moveY < 0 ? kTextUniCodeRightArrow : kTextUniCodeLeftArrow)];
+        [outputStr appendFormat:(moveX < 0 ? kTextUniCodeUpArrow : kTextUniCodeDownArrow)];
 
         return outputStr;
     }

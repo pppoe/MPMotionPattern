@@ -11,8 +11,6 @@
 #import "MPMotionDetector.h"
 #import <AVFoundation/AVFoundation.h>
 
-#import "UIImage+OpenCV.h"
-
 #define kControlButtonStatusWaitForStart 0x100
 #define kControlButtonStatusWaitForStop 0x101
 #define kControlButtonCaptionStart @"Start"
@@ -30,7 +28,7 @@
     if (self) {
         // Custom initialization
         self.m_videoProcessor = [[MPVideoProcessor alloc] init];        
-        self.m_videoProcessor.m_captureImageType = MPVideoProcessorCaptureColorImageGrayScale;
+        self.m_videoProcessor.m_captureImageType = EnumCaptureGrayScaleImage;
         self.m_motionDetector = [[MPMotionDetector alloc] init];
     }
     return self;

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+class ImageDataWrapper;
+
 @class MPMotionDetector;
 @class MPMotionFilter;
 @class MPMotionPatternNodShake;
@@ -24,8 +26,8 @@ typedef enum {
 
 @interface MPMotionDetector : NSObject {
     //< Frame Mat is int
-    cv::Mat m_prevFrameMat;
-    cv::Mat m_currFrameMat;
+    ImageDataWrapper *m_prevFrameImageData;
+    ImageDataWrapper *m_currFrameImageData;
     
     MPMotionFilter *m_motionFilter;
     MPMotionPatternNodShake *m_pattern;

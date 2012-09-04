@@ -3,7 +3,6 @@
 //
 
 #ifdef __cplusplus
-#import <OpenCV/opencv2/opencv.hpp>
 #endif
 
 #import <Availability.h>
