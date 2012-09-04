@@ -1,0 +1,3 @@
+[submodule "MPVideoProcessor"]
+	path = MPVideoProcessor
+	url = git@github.com:pppoe/MPVideoProcessor.git
