@@ -53,7 +53,7 @@
 
 #define square(X) ((X)*(X))
 
-#define kBufferFramesCount 3
+#define kBufferFramesCount 5
 
 #define MOTION_BLOCK_WIDTH 20
 #define MOTION_BLOCK_HEIGHT 14
@@ -135,7 +135,7 @@ void MotionEst(ImageDataWrapper& curImage, ImageDataWrapper& prevImage, int rang
     moveY = nMV_Y;
 }
 
-void gridSamplingImageMat(ImageDataWrapper& org_imageMat, ImageDataWrapper* to_imageMat, const int spacing, const int binSizeInShift) {
+void gridSamplingImageMat(const ImageDataWrapper& org_imageMat, ImageDataWrapper& to_imageMat, const int spacing, const int binSizeInShift) {
     
     int nWidth = org_imageMat.width();
     int nHeight = org_imageMat.height();
@@ -143,7 +143,7 @@ void gridSamplingImageMat(ImageDataWrapper& org_imageMat, ImageDataWrapper* to_i
     const int nSampledWidth = (nWidth >> binSizeInShift);
     const int nSampledHeight = (nHeight >> binSizeInShift);
     
-    to_imageMat = new ImageDataWrapper(nSampledWidth, nSampledHeight);
+    to_imageMat = ImageDataWrapper(nSampledWidth, nSampledHeight);
     
     int sampleBufferCounts[nSampledHeight][nSampledWidth];
     int sampleBuffer[nSampledHeight][nSampledWidth];
@@ -173,7 +173,7 @@ void gridSamplingImageMat(ImageDataWrapper& org_imageMat, ImageDataWrapper* to_i
 	{
 		for (int j = 0; j < nSampledWidth; j++)
 		{
-			to_imageMat->assignAt(i,j) = sampleBuffer[i][j] / sampleBufferCounts[i][j];
+			to_imageMat.assignAt(i,j) = sampleBuffer[i][j] / sampleBufferCounts[i][j];
 		}
 	}
     
@@ -186,8 +186,15 @@ void gridSamplingImageMat(ImageDataWrapper& org_imageMat, ImageDataWrapper* to_i
     if ((self = [super init]))
     {
         m_motionFilter = [[MPMotionFilter alloc] init];
+        m_currFrameImageData = new ImageDataWrapper;
+        m_prevFrameImageData = new ImageDataWrapper;
     }
     return self;
+}
+
+- (void)dealloc {
+    delete m_currFrameImageData;
+    delete m_prevFrameImageData;
 }
 
 - (NSString *)testDetection:(UIImage *)org_prevFrame :(UIImage*)org_curFrame {
@@ -195,12 +202,13 @@ void gridSamplingImageMat(ImageDataWrapper& org_imageMat, ImageDataWrapper* to_i
     const int spacing = kDefaultSamplingSpacing;
     const int binSizeInShift = kDefaultSamplingBinSizeInShift;
     
-    ImageDataWrapper *curFrameMat = [MPImageDataWrapper imageDataWrapperFromUIImage:org_curFrame];
+    ImageDataWrapper curFrameMat;
+    [MPImageDataWrapper fillImageDataWithUIImage:org_curFrame dataWrapper:curFrameMat];
     
     if (!org_prevFrame || fabs([org_prevFrame size].width) < 1) //< Invalid PrevFrame
     {
         NSLog(@"First Frame");
-        gridSamplingImageMat(*curFrameMat, m_currFrameImageData, spacing, binSizeInShift);
+        gridSamplingImageMat(curFrameMat, *m_currFrameImageData, spacing, binSizeInShift);
         return @"First Frame";
     }
     else
@@ -215,7 +223,7 @@ void gridSamplingImageMat(ImageDataWrapper& org_imageMat, ImageDataWrapper* to_i
         const int search_range = 5;
         int moveX = 0;
         int moveY = 0;
-        gridSamplingImageMat(*curFrameMat, r_curFrame, kDefaultSamplingSpacing, kDefaultSamplingBinSizeInShift);
+        gridSamplingImageMat(curFrameMat, *r_curFrame, kDefaultSamplingSpacing, kDefaultSamplingBinSizeInShift);
         MotionEst(*r_curFrame, *r_preFrame, search_range, moveX, moveY);
         
         [m_motionFilter addMovement:CGPointMake(moveX, moveY)];
@@ -227,26 +235,24 @@ void gridSamplingImageMat(ImageDataWrapper& org_imageMat, ImageDataWrapper* to_i
         moveX = (int)move.x;
         moveY = (int)move.y;
         
-        //const int activeMoveFrameCounts = 10;
         enum { EnumMoveNone, EnumMoveUp, EnumMoveDown, EnumMoveLeft, EnumMoveRight} moveType = EnumMoveNone;
         if (fabs(moveY) > fabs(moveX))
         {
-            if (fabs(moveY) > 0)
+            if (fabs(moveY) > 1/search_range)
             {
                 moveType = (moveY < 0 ? EnumMoveRight : EnumMoveLeft);
+                [outputStr appendFormat:(moveY < 0 ? kTextUniCodeRightArrow : kTextUniCodeLeftArrow)];
             }
         }
         else
         {
-            if (fabs(moveX) > 0)
+            if (fabs(moveX) > 1/search_range)
             {
                 moveType = (moveX < 0 ? EnumMoveUp : EnumMoveDown);
+                [outputStr appendFormat:(moveX < 0 ? kTextUniCodeUpArrow : kTextUniCodeDownArrow)];
             }
         }
         
-        [outputStr appendFormat:(moveY < 0 ? kTextUniCodeRightArrow : kTextUniCodeLeftArrow)];
-        [outputStr appendFormat:(moveX < 0 ? kTextUniCodeUpArrow : kTextUniCodeDownArrow)];
-
         return outputStr;
     }
 }

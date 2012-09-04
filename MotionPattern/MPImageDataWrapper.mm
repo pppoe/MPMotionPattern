@@ -10,6 +10,13 @@
 
 #pragma mark ImageDataWrapper
 
+ImageDataWrapper::ImageDataWrapper()
+{
+    _width = 0;
+    _height = 0;
+    _data = NULL;
+}
+
 ImageDataWrapper::ImageDataWrapper(const int width, const int height)
 {
     _width = width;
@@ -26,8 +33,15 @@ const ImageDataWrapper& ImageDataWrapper::operator=(const ImageDataWrapper& imag
 {
     _width = imageData.width();
     _height = imageData.height();
+    
+    if (_data != imageData.data())
+    {
+        delete [] _data;
+    }
+    
     _data = new unsigned char[_height*_width];
     memcpy(_data, imageData.data(), _width*_height*sizeof(unsigned char));
+    
     return *this;
 }
 
@@ -63,15 +77,15 @@ unsigned char& ImageDataWrapper::assignAt(int y, int x)
 
 @implementation MPImageDataWrapper
 
-+ (ImageDataWrapper *)imageDataWrapperFromUIImage:(UIImage *)image
++ (void)fillImageDataWithUIImage:(UIImage *)image dataWrapper:(ImageDataWrapper&)dataWrapper
 {
     CGColorSpaceRef colorSpace = CGImageGetColorSpace(image.CGImage);
     CGFloat cols = image.size.width;
     CGFloat rows = image.size.height;
     
-    ImageDataWrapper *dataWrapper = new ImageDataWrapper(cols, rows);
+    dataWrapper = ImageDataWrapper(cols, rows);
     
-    CGContextRef contextRef = CGBitmapContextCreate(dataWrapper->data(),
+    CGContextRef contextRef = CGBitmapContextCreate(dataWrapper.data(),
                                                     cols,                       // Width of bitmap
                                                     rows,                       // Height of bitmap
                                                     8,                          // Bits per component
@@ -82,12 +96,6 @@ unsigned char& ImageDataWrapper::assignAt(int y, int x)
     
     CGContextDrawImage(contextRef, CGRectMake(0, 0, cols, rows), image.CGImage);
     CGContextRelease(contextRef);
-    return dataWrapper;
-}
-
-+ (void)fillImageDataWithUIImage:(UIImage *)image dataWrapper:(ImageDataWrapper *)dataWrapper
-{
-    *dataWrapper = *([MPImageDataWrapper imageDataWrapperFromUIImage:image]);
 }
 
 @end

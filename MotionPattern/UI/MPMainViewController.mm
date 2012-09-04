@@ -28,7 +28,7 @@
     if (self) {
         // Custom initialization
         self.m_videoProcessor = [[MPVideoProcessor alloc] init];        
-        self.m_videoProcessor.m_captureImageType = EnumCaptureGrayScaleImage;
+        self.m_videoProcessor.m_captureImageType = MPVideoProcessorCaptureColorImageGrayScale;
         self.m_motionDetector = [[MPMotionDetector alloc] init];
     }
     return self;
@@ -41,7 +41,7 @@
     [self.m_controlButton setTag:kControlButtonStatusWaitForStart];
     [self.m_controlButton setTitle:kControlButtonCaptionStart forState:UIControlStateNormal];
     
-    //self.m_imageView.layer.affineTransform = CGAffineTransformMakeRotation(M_PI_2);
+    self.m_imageView.layer.affineTransform = CGAffineTransformMakeRotation(M_PI_2);
 }
 
 - (void)viewDidUnload

@@ -12,6 +12,7 @@ class ImageDataWrapper {
     
 public:
     
+    ImageDataWrapper();
     ImageDataWrapper(const int width, const int height);
     ImageDataWrapper(ImageDataWrapper const & imageData);
     ~ImageDataWrapper();
@@ -34,7 +35,6 @@ private:
 
 @interface MPImageDataWrapper : NSObject
 
-+ (ImageDataWrapper *)imageDataWrapperFromUIImage:(UIImage *)image;
-+ (void)fillImageDataWithUIImage:(UIImage *)image dataWrapper:(ImageDataWrapper *)dataWrapper;
++ (void)fillImageDataWithUIImage:(UIImage *)image dataWrapper:(ImageDataWrapper&)dataWrapper;
 
 @end
