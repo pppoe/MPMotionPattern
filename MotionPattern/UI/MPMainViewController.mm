@@ -28,7 +28,7 @@
     if (self) {
         // Custom initialization
         self.m_videoProcessor = [[MPVideoProcessor alloc] init];        
-        self.m_videoProcessor.m_captureImageType = MPVideoProcessorCaptureColorImageGrayScale;
+        self.m_videoProcessor.m_captureImageType = EnumCaptureGrayScaleImage;
         self.m_motionDetector = [[MPMotionDetector alloc] init];
     }
     return self;
